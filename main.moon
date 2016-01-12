@@ -1,9 +1,9 @@
+class Cylinder
+  new: (@x,@y) =>
+  sprite: love.graphics.newImage('images/cylinder.png')
+
 love.load = () ->
-  export cylinder = {
-    sprite: love.graphics.newImage('images/cylinder.png')
-    x:10
-    y:85
-  }
+  export cylinder = Cylinder 10, 85
 
 love.draw = () ->
   love.graphics.scale 4, 4
