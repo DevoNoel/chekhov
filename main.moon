@@ -1,7 +1,13 @@
-love.load = ->
+love.load = () ->
+  export cylinder = {
+    sprite: love.graphics.newImage('images/cylinder.png')
+    x: 0
+    y: 0
+  }
 
-love.draw = ->
-  love.graphics.print "Hello World", 400, 300
+love.draw = () ->
+  love.graphics.scale 5, 5
+  love.graphics.draw cylinder.sprite, cylinder.x, cylinder.y
 
-love.update = ->
+love.update = (dt) ->
 
