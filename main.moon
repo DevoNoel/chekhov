@@ -15,10 +15,10 @@ love.load = () ->
   export rounds = {
     Round 23, 88
     Round 15, 93
-    Round 31, 93
     Round 15, 103
-    Round 31, 103
     Round 23, 108
+    Round 31, 103
+    Round 31, 93
   }
 
 love.draw = () ->
