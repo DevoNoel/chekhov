@@ -29,3 +29,6 @@ love.draw = () ->
 
 love.update = (dt) ->
 
+love.keypressed = (key) ->
+  if key == 'space'
+    table.remove(rounds, 1)
