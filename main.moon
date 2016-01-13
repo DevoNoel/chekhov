@@ -38,6 +38,9 @@ love.update = (dt) ->
 love.keypressed = (key) ->
   if key == 'space'
     if chambers.loaded == #chambers.rounds
-      print "BOOM"
-
+      print 'BOOM'
     table.remove(chambers.rounds, 1)
+
+  elseif key == 'r'
+    export chambers = Chambers!
+
