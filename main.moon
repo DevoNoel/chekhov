@@ -43,12 +43,11 @@ love.load = () ->
 
 love.draw = () ->
   love.graphics.scale 4, 4
+
+  love.graphics.draw activePlayer().sprite, activePlayer().x, activePlayer().y
   love.graphics.draw cylinder.sprite, cylinder.x, cylinder.y
 
   for i, v in ipairs chambers.rounds
-    love.graphics.draw v.sprite, v.x, v.y
-
-  for i, v in ipairs players.markers
     love.graphics.draw v.sprite, v.x, v.y
 
 love.update = (dt) ->
@@ -58,7 +57,11 @@ love.keypressed = (key) ->
     if chambers.loaded == #chambers.rounds
       print 'BOOM'
     table.remove(chambers.rounds, 1)
+    players.turn = (players.turn % 2) + 1
 
   elseif key == 'r'
     export chambers = Chambers!
+    players.turn = 1
 
+export activePlayer = ->
+  players.markers[players.turn]
