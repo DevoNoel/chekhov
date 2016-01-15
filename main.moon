@@ -38,7 +38,7 @@ class Players
       Marker 30, 5, love.graphics.newImage('images/p2.png')
     }
 
-    @turn = 1
+    @turn = love.math.random(2)
 
 love.load = () ->
   export state = State!
@@ -72,7 +72,7 @@ love.keypressed = (key) ->
   elseif key == 'r'
     state.finished = false
     export chambers = Chambers!
-    players.turn = 1
+    players.turn = love.math.random(2)
 
 export activePlayer = ->
   players.markers[players.turn]
