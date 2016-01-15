@@ -1,3 +1,7 @@
+class State
+  new: =>
+    @finished = false
+
 class Cylinder
   new: (@x,@y) =>
     self.sprite\setFilter 'nearest', 'nearest'
@@ -37,12 +41,16 @@ class Players
     @turn = 1
 
 love.load = () ->
+  export state = State!
   export cylinder = Cylinder 10, 85
   export chambers = Chambers!
   export players = Players!
 
 love.draw = () ->
   love.graphics.scale 4, 4
+
+  if state.finished
+    love.graphics.print "BANG!", 100, 50
 
   love.graphics.draw activePlayer().sprite, activePlayer().x, activePlayer().y
   love.graphics.draw cylinder.sprite, cylinder.x, cylinder.y
@@ -53,13 +61,14 @@ love.draw = () ->
 love.update = (dt) ->
 
 love.keypressed = (key) ->
-  if key == 'space'
+  if (not state.finished) and key == 'space'
     if chambers.loaded == #chambers.rounds
-      print 'BOOM'
+      state.finished = true
     table.remove(chambers.rounds, 1)
     players.turn = (players.turn % 2) + 1
 
   elseif key == 'r'
+    state.finished = false
     export chambers = Chambers!
     players.turn = 1
 
