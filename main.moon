@@ -62,9 +62,10 @@ love.update = (dt) ->
 
 love.keypressed = (key) ->
   if (not state.finished) and key == 'space'
+    table.remove(chambers.rounds, 1)
     if chambers.loaded == #chambers.rounds
       state.finished = true
-    table.remove(chambers.rounds, 1)
+      return
     players.turn = (players.turn % 2) + 1
 
   elseif key == 'r'
